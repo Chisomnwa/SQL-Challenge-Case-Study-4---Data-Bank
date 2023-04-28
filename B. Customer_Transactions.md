@@ -65,8 +65,8 @@ WITH deposit_summary AS
 	SELECT customer_id,
 	       COUNT(CASE WHEN txn_type = 'deposit' THEN 1 END) AS deposit_count,
 	       SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount END) AS deposit_amount
-    FROM customer_transactions
-	GROUP BY customer_id
+        FROM customer_transactions
+        GROUP BY customer_id
 )
 
 SELECT txn_type,
