@@ -1,4 +1,4 @@
-# <p align="center" style="margin-top: 0px;"> 💵 Case Study #4 - Data Bank 💵
+# <p align="center" style="margin-top: 0px;"> 💰 Case Study #4 - Data Bank 💰
 
 <p align="center" style="margin-bottom: 0px !important;">
 <img src="https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/Images/Data%20Bank%20Logo.png" width="540" height="540">
@@ -11,7 +11,7 @@
 - [Business Case](#business-case)
 - [Entity Relationship Diagram](#entity-relationship-diagram)
 - [Available Data](#available-data)
-- [Case Study Questions](#case-study-questions)
+- [Case Study Solutions](#case-study-solutions)
 - [Extra Resources](#extra-resources)
 
    
