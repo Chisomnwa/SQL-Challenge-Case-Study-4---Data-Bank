@@ -33,6 +33,7 @@ FROM customer_transactions;
 ```
 
 ### Output
+*Kindly note that this is not the entire output. The entire output is long and would take up space.*
 
 customer_id |txn_date | txn_type | txn_amount |running_balance
 -- | -- | -- | -- | --
@@ -78,7 +79,8 @@ GROUP BY customer_id, DATEPART(MONTH, txn_date), DATENAME(MONTH, txn_date);
 ```
 
 ### Output:
-
+*Kindly note that this is not the entire output. The entire output is long and would take up space.*
+	
 customer_id |month | month_name |closing_balance
 -- | -- | -- | --
 1 | 1 | January | 312
@@ -129,7 +131,8 @@ GROUP BY customer_id;
 ```
 
 ### Output:
-
+*Kindly note that this is not the entire output. The entire output is long and would take up space.*
+	
 customer_id | avg_running_balance | minimum_running_balance |max_running_balance
 -- | -- | -- | --
 1 | -151 | -640 | 312
