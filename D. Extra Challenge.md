@@ -1,4 +1,4 @@
-# <p align="center" style="margin-top: 0px;">💵 Case Study #4 - Data Bank 💵
+# <p align="center" style="margin-top: 0px;">💰 Case Study #4 - Data Bank 💰
 ## <p align="center"> D. Extra Challenge
 
 Data Bank wants to try another option which is a bit more difficult to implement - they want to calculate data growth
@@ -30,26 +30,27 @@ estimated amount of data that each customer will need for each month, based on d
 WITH cte AS
 (
 	SELECT customer_id,
-		   txn_date,
-		   SUM(txn_amount) AS total_data,
-		   DATEFROMPARTS(YEAR(txn_date), MONTH(txn_date), 1) AS month_start_date,
-		   DATEDIFF(DAY, DATEFROMPARTS(YEAR(txn_date), MONTH(txn_date), 1), txn_date) AS days_in_month,
-		   CAST(SUM(txn_amount) AS DECIMAL(18, 2)) * POWER((1 + 0.06/365), DATEDIFF(DAY, '1900-01-01', txn_date)) AS daily_interest_data
+	       txn_date,
+	       SUM(txn_amount) AS total_data,
+	       DATEFROMPARTS(YEAR(txn_date), MONTH(txn_date), 1) AS month_start_date,
+	       DATEDIFF(DAY, DATEFROMPARTS(YEAR(txn_date), MONTH(txn_date), 1), txn_date) AS days_in_month,
+	       CAST(SUM(txn_amount) AS DECIMAL(18, 2)) * POWER((1 + 0.06/365), DATEDIFF(DAY, '1900-01-01', txn_date)) AS daily_interest_data
 	FROM customer_transactions
 	GROUP BY customer_id, txn_date
 	--ORDER BY customer_id
 )
 
 SELECT customer_id,
-	   DATEFROMPARTS(YEAR(month_start_date), MONTH(month_start_date), 1) AS txn_month,
-	   ROUND(SUM(daily_interest_data * days_in_month), 2) AS data_required
+       DATEFROMPARTS(YEAR(month_start_date), MONTH(month_start_date), 1) AS txn_month,
+       ROUND(SUM(daily_interest_data * days_in_month), 2) AS data_required
 FROM cte
 GROUP BY customer_id, DATEFROMPARTS(YEAR(month_start_date), MONTH(month_start_date), 1)
 ORDER BY data_required DESC 
 ```
 
 ### Ouput:
-
+*Kindly note that this is not the entire output. The entire output is long and will take up space.*
+	
 customer_id | txn_month | data_required_by_month |
 -- | -- | --
 61 | 2020-03-01	| 192742529.490000
