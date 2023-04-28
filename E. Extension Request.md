@@ -1,4 +1,4 @@
-# <p align="center" style="margin-top: 0px;">💵 Case Study #4 - Data Bank 💵
+# <p align="center" style="margin-top: 0px;">💰 Case Study #4 - Data Bank 💰
 ## <p align="center"> E. Extension Request
 
 The Data Bank team wants you to use the outputs generated from the above sections to create a quick Powerpoint presentation which will be used as marketing materials for both external investors who might want to buy Data Bank shares and new prospective customers who might want to bank with Data Bank.
@@ -9,6 +9,6 @@ With the transaction analysis - prepare a 1 page presentation slide which contai
 
 ---
 
-Here's a (https://1drv.ms/p/s!Apg3pPcl6qjNgXVeXAke2vAv3SxR)[PowerPoint presentation] that meets the requirement of the above request. 
+Here's a [https://1drv.ms/p/s!Apg3pPcl6qjNgXVeXAke2vAv3SxR](PowerPoint presentation) that meets the requirement of the above request. 
 
-And let me know if you'd love to invest in Data Bank.
+And I hope when you are done vieing the presentation, you'd love to invest in Data Bank.
