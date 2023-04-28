@@ -9,6 +9,6 @@ With the transaction analysis - prepare a 1 page presentation slide which contai
 
 ---
 
-Here's a [https://1drv.ms/p/s!Apg3pPcl6qjNgXVeXAke2vAv3SxR](PowerPoint presentation) that meets the requirement of the above request. 
+Here's a [PowerPoint presentation][https://1drv.ms/p/s!Apg3pPcl6qjNgXVeXAke2vAv3SxR) that meets the requirement of the above request. 
 
 And I hope when you are done vieing the presentation, you'd love to invest in Data Bank.
