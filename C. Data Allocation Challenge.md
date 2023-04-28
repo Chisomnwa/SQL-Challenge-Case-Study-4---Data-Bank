@@ -1,4 +1,4 @@
-# <p align="center" style="margin-top: 0px;">💵 Case Study #4 - Data Bank 💵
+# <p align="center" style="margin-top: 0px;">💰 Case Study #4 - Data Bank 💰
 ## <p align="center">  C. Data Allocation Challenge
 
 To test out a few different hypotheses - the Data Bank team wants to run an experiment where different groups of customers would be allocated data using 3 different options:
@@ -21,14 +21,14 @@ Steps:
 
 ```sql
 SELECT customer_id,
-	   txn_date,
-	   txn_type,
-	   txn_amount,
-	   SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount
-				WHEN txn_type = 'withdrawal' THEN -txn_amount
-				WHEN txn_type = 'purchase' THEN -txn_amount
-				ELSE 0
-			END) OVER(PARTITION BY customer_id ORDER BY txn_date) AS running_balance
+       txn_date,
+       txn_type,
+       txn_amount,
+       SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount
+		WHEN txn_type = 'withdrawal' THEN -txn_amount
+		WHEN txn_type = 'purchase' THEN -txn_amount
+		ELSE 0
+	   END) OVER(PARTITION BY customer_id ORDER BY txn_date) AS running_balance
 FROM customer_transactions;
 ```
 
@@ -36,23 +36,23 @@ FROM customer_transactions;
 
 customer_id |txn_date | txn_type | txn_amount |running_customer_balance
 -- | -- | -- | -- | --
-1 |	2020-01-02 |deposit |312 | 312
-1	| 2020-03-05 |	purchase |612 | -300
-1	| 2020-03-17 |deposit |	324 |	24
-1 |	2020-03-19 | purchase |	664 | -640
-2	| 2020-01-03 | deposit	|549 |549
-2	| 2020-03-24 | deposit | 61 | 610
-3 |	2020-01-27 |deposit	| 144	| 144
+1 | 2020-01-02 |deposit |312 | 312
+1 | 2020-03-05 | purchase |612 | -300
+1 | 2020-03-17 |deposit | 324 |	24
+1 | 2020-03-19 | purchase | 664 | -640
+2 | 2020-01-03 | deposit |549 |549
+2 | 2020-03-24 | deposit | 61 | 610
+3 | 2020-01-27 |deposit | 144 | 144
 3 | 2020-02-22 | purchase |965 | -821
-3 |	2020-03-05 | withdrawal | 213 |	-1034
-3 |	2020-03-19 | withdrawal |	188 |	-1222
-3 |	2020-04-12 |	deposit | 493 |	-729
-4 |	2020-01-07 | deposit |	458 | 458
-4 |	2020-01-21 |deposit | 390 |	848
-4 |	2020-03-25 |	purchase |	193 | 655
-5 |	2020-01-15 |deposit | 974 |	974
-5 |	2020-01-25 | deposit | 806 | 1780
-5 |	2020-01-31 | withdrawal |	826	| 954
+3 | 2020-03-05 | withdrawal | 213 | -1034
+3 | 2020-03-19 | withdrawal | 188 | -1222
+3 | 2020-04-12 | deposit | 493 | -729
+4 | 2020-01-07 | deposit | 458 | 458
+4 | 2020-01-21 |deposit | 390 |	848
+4 | 2020-03-25 | purchase | 193 | 655
+5 | 2020-01-15 |deposit | 974 |	974
+5 | 2020-01-25 | deposit | 806 | 1780
+5 | 2020-01-31 | withdrawal | 826 | 954
 
 ---
 
@@ -66,13 +66,13 @@ Steps:
 
 ```sql
 SELECT customer_id,
-	   DATEPART(MONTH, txn_date) AS month,
-	   DATENAME(MONTH, txn_date) AS month_name,
-	   SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount
-				WHEN txn_type = 'withdrawal' THEN -txn_amount
-				WHEN txn_type = 'purchase' THEN -txn_amount
-				ELSE 0
-			END) AS closing_balance
+       DATEPART(MONTH, txn_date) AS month,
+       DATENAME(MONTH, txn_date) AS month_name,
+       SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount
+		WHEN txn_type = 'withdrawal' THEN -txn_amount
+		WHEN txn_type = 'purchase' THEN -txn_amount
+		ELSE 0
+	   END) AS closing_balance
 FROM customer_transactions
 GROUP BY customer_id, DATEPART(MONTH, txn_date), DATENAME(MONTH, txn_date);
 ```
@@ -81,19 +81,19 @@ GROUP BY customer_id, DATEPART(MONTH, txn_date), DATENAME(MONTH, txn_date);
 
 customer_id |month | month_name |closing_balance
 -- | -- | -- | --
-1 |	1	| January | 312
-1	| 3	| March |	-952
-2	| 1 | January |	549
-2	| 3	| March |	61
-3	| 1	| January | 144
-3	| 2	| February | -965
-3	| 3	| March |	-401
-3	| 4	| April |	493
-4	| 1	| January| 848
-4	| 3	| March | -193
-5	| 1	| January |	954
-5	| 3	| March |	-2877
-5	| 4	| April |	-490
+1 | 1 | January | 312
+1 | 3 | March |	-952
+2 | 1 | January | 549
+2 | 3 | March | 61
+3 | 1 | January | 144
+3 | 2 | February | -965
+3 | 3 | March | -401
+3 | 4 | April |	493
+4 | 1 | January| 848
+4 | 3 | March | -193
+5 | 1 | January | 954
+5 | 3 | March |	-2877
+5 | 4 | April |	-490
 
 ---
 
@@ -109,21 +109,21 @@ Steps:
 WITH running_balance AS
 (
 	SELECT customer_id,
-		   txn_date,
-		   txn_type,
-		   txn_amount,
-		   SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount
-					WHEN txn_type = 'withdrawal' THEN -txn_amount
-					WHEN txn_type = 'purchase' THEN -txn_amount
-					ELSE 0
-				END) OVER(PARTITION BY customer_id ORDER BY txn_date) AS running_balance
+	       txn_date,
+	       txn_type,
+	       txn_amount,
+	       SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount
+			WHEN txn_type = 'withdrawal' THEN -txn_amount
+			WHEN txn_type = 'purchase' THEN -txn_amount
+			ELSE 0
+		    END) OVER(PARTITION BY customer_id ORDER BY txn_date) AS running_balance
 	FROM customer_transactions
 )
 
 SELECT customer_id,
-	   AVG(running_balance) AS avg_running_balance,
-	   MIN(running_balance) AS min_running_balance,
-	   MAX(running_balance) AS max_running_balance
+       AVG(running_balance) AS avg_running_balance,
+       MIN(running_balance) AS min_running_balance,
+       MAX(running_balance) AS max_running_balance
 FROM running_balance
 GROUP BY customer_id;
 ```
@@ -132,15 +132,15 @@ GROUP BY customer_id;
 
 customer_id | avg_running_balance | minimum_running_balance |max_running_balance
 -- | -- | -- | --
-1 | -151 | -640 |	312
-2	| 579	| 549 |	610
-3	| -732 | -1222 | 144
-4	| 653	| 458 |	848
-5	| -135 | -2413 | 1780
-6	| 624 |	-552 | 2197
-7	| 2268 | 887 | 3539
-8	| 173	| -1029 | 1363
-9	| 1021 | -91 | 2030
+1 | -151 | -640 | 312
+2 | 579	| 549 |	610
+3 | -732 | -1222 | 144
+4 | 653	| 458 |	848
+5 | -135 | -2413 | 1780
+6 | 624 | -552 | 2197
+7 | 2268 | 887 | 3539
+8 | 173	| -1029 | 1363
+9 | 1021 | -91 | 2030
 10 | -2229 | -5090 | 556
 ---
 
@@ -166,37 +166,37 @@ each customer
 WITH transaction_amt_cte AS
 (
 	SELECT customer_id,
-		   txn_date,
-		   MONTH(txn_date) AS txn_month,
-		   txn_type,
-		   CASE WHEN txn_type = 'deposit' THEN txn_amount 
-				ELSE -txn_amount 
-		   END AS net_transaction_amt
+	       txn_date,
+	       MONTH(txn_date) AS txn_month,
+	       txn_type,
+	       CASE WHEN txn_type = 'deposit' THEN txn_amount 
+		    ELSE -txn_amount 
+	       END AS net_transaction_amt
 	FROM customer_transactions
 ),
 
 running_customer_balance_cte AS
 (
 	SELECT customer_id,
-		   txn_date,
-		   txn_month,
-		   net_transaction_amt,
-		   SUM(net_transaction_amt) OVER(PARTITION BY customer_id, txn_month ORDER BY txn_date
-		   ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_customer_balance
+	       txn_date,
+	       txn_month,
+	       net_transaction_amt,
+	       SUM(net_transaction_amt) OVER(PARTITION BY customer_id, txn_month ORDER BY txn_date
+	       ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_customer_balance
 	FROM transaction_amt_cte
 ),
 
 customer_end_month_balance_cte AS
 (
 	SELECT customer_id,
-		   txn_month,
-		   MAX(running_customer_balance) AS month_end_balance
+	       txn_month,
+	       MAX(running_customer_balance) AS month_end_balance
 	FROM running_customer_balance_cte
 	GROUP BY customer_id, txn_month
 )
 
 SELECT txn_month,
-	   SUM(month_end_balance) AS data_required_per_month
+       SUM(month_end_balance) AS data_required_per_month
 FROM customer_end_month_balance_cte
 GROUP BY txn_month
 ORDER BY data_required_per_month DESC;
@@ -206,9 +206,9 @@ ORDER BY data_required_per_month DESC;
 txn_month | data_required_by_month |
 -- | -- |
 1 | 366801
-3 |	144015
-2 |	132426
-4 |	51003
+3 | 144015
+2 | 132426
+4 | 51003
 
 ### Insghts:
 
@@ -249,10 +249,10 @@ This gives an estimate of how much data would be required for option 2 on a mont
 WITH transaction_amt_cte AS
 (
 	SELECT customer_id,
-		   MONTH(txn_date) AS txn_month,
-		   SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount
-					ELSE -txn_amount
-				END) AS net_transaction_amt
+               MONTH(txn_date) AS txn_month,
+	       SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount
+		        ELSE -txn_amount
+		    END) AS net_transaction_amt
 	FROM customer_transactions
 	GROUP BY customer_id, MONTH(txn_date)
 ),
@@ -260,16 +260,16 @@ WITH transaction_amt_cte AS
 running_customer_balance_cte AS
 (
 	SELECT customer_id,
-		   txn_month,
-		   net_transaction_amt,
-		   SUM(net_transaction_amt) OVER(PARTITION BY customer_id ORDER BY txn_month) AS running_customer_balance
+	       txn_month,
+	       net_transaction_amt,
+	       SUM(net_transaction_amt) OVER(PARTITION BY customer_id ORDER BY txn_month) AS running_customer_balance
 	FROM transaction_amt_cte
 ),
 
 avg_running_customer_balance AS
 (
 	SELECT customer_id,
-		   AVG(running_customer_balance) AS avg_running_customer_balance
+	       AVG(running_customer_balance) AS avg_running_customer_balance
 	FROM running_customer_balance_cte
 	GROUP BY customer_id
 )
@@ -322,24 +322,24 @@ Steps:
 WITH transaction_amt_cte AS
 (
 	SELECT customer_id,
-		   txn_date,
-		   txn_month = MONTH(txn_date),
-		   txn_type,
-		   txn_amount,
-		   net_transaction_amt = CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END
+	       txn_date,
+	       txn_month = MONTH(txn_date),
+	       txn_type,
+	       txn_amount,
+	       net_transaction_amt = CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -txn_amount END
 	FROM customer_transactions
 ),
 
 running_customer_balance_cte AS
 (
 	SELECT customer_id,
-		   txn_month,
-		   running_customer_balance = SUM(net_transaction_amt) OVER (PARTITION BY customer_id ORDER BY txn_month)
+	       txn_month,
+	       running_customer_balance = SUM(net_transaction_amt) OVER (PARTITION BY customer_id ORDER BY txn_month)
 	FROM transaction_amt_cte
 )
 
 SELECT txn_month,
-	   SUM(running_customer_balance) AS data_required_per_month
+       SUM(running_customer_balance) AS data_required_per_month
 FROM running_customer_balance_cte
 GROUP BY txn_month
 ORDER BY data_required_per_month;
