@@ -90,7 +90,7 @@ customer_id | txn_date | txn_type | txn_amount
 - [Part B - Customer Transactions](https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/B.%20Customer_Transactions.md)
 - [Part C -Data Allocation Challenge](https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/C.%20Data%20Allocation%20Challenge.md)
 - [Part D - Extra Challenge](https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/D.%20Extra%20Challenge.md)
-- [Part E - Extension Request](https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/E.%20Extension%20Request.md)
+- [Part E - Extension Request (PowerPoint Presentation)](https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/E.%20Extension%20Request.md)
    
    
  ---
