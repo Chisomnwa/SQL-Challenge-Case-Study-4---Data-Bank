@@ -34,7 +34,7 @@ FROM customer_transactions;
 
 ### Output
 
-customer_id |txn_date | txn_type | txn_amount |running_customer_balance
+customer_id |txn_date | txn_type | txn_amount |running_balance
 -- | -- | -- | -- | --
 1 | 2020-01-02 |deposit |312 | 312
 1 | 2020-03-05 | purchase |612 | -300
