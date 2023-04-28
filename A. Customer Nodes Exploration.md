@@ -1,4 +1,4 @@
-# <p align="center" style="margin-top: 0px;">💵 Case Study #4 - Data Bank 💰
+# <p align="center" style="margin-top: 0px;">💰 Case Study #4 - Data Bank 💰
 ## <p align="center">  A. Customer Nodes Exploration
 
 
