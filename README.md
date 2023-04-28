@@ -1,7 +1,7 @@
 # <p align="center" style="margin-top: 0px;"> 💵 Case Study #4 - Data Bank 💵
 
 <p align="center" style="margin-bottom: 0px !important;">
-<img src="put image" width="540" height="540">
+<img src="https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/Images/Data%20Bank%20Logo.png" width="540" height="540">
 
 ---
 *This repository hosts the solutions to the 4th challenge (Week 4) of the 8 Weeks SQL Challenge by DannyMa. [Click here to view the full challenge](https://8weeksqlchallenge.com/case-study-4/)*
@@ -32,7 +32,7 @@ This case study is all about calculating metrics, growth and helping the busines
 ---
 ## Entity Relationship Diagram
 <p align="center" style="margin-bottom: 0px !important;">
-<img src="put image">
+<img src="https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/Images/ERD%20-%20%20Data%20Bank.png">
    
    
 ---
@@ -86,17 +86,17 @@ customer_id | txn_date | txn_type | txn_amount
    
 ---
 ## Case Study Solutions
-- [Part A - Customer Nodes Exploration](https://github.com/Chisomnwa/8-Week-SQL-Challenge-Case-Study--3-Foodie-Fi/blob/main/A.%20Customer%20Journey.md)
-- [Part B - Customer Transactions](https://github.com/Chisomnwa/8-Week-SQL-Challenge-Case-Study--3-Foodie-Fi/blob/main/B.%20Data%20Analysis%20Questions.md)
-- [Part C -Data Allocation Challenge](https://github.com/Chisomnwa/8-Week-SQL-Challenge-Case-Study--3-Foodie-Fi/blob/main/C.%20Challenge%20Payment%20Question.md)
-- [Part D - Extra Challenge](https://github.com/Chisomnwa/8-Week-SQL-Challenge-Case-Study--3-Foodie-Fi/blob/main/D.%20Outside%20the%20Box%20Questions.md)
-- [Part E - Extension Request](https://github.com/Chisomnwa/8-Week-SQL-Challenge-Case-Study--3-Foodie-Fi/blob/main/D.%20Outside%20the%20Box%20Questions.md)
+- [Part A - Customer Nodes Exploration](https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/A.%20Customer%20Nodes%20Exploration.md)
+- [Part B - Customer Transactions](https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/B.%20Customer_Transactions.md)
+- [Part C -Data Allocation Challenge](https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/C.%20Data%20Allocation%20Challenge.md)
+- [Part D - Extra Challenge](https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/D.%20Extra%20Challenge.md)
+- [Part E - Extension Request](https://github.com/Chisomnwa/SQL-Challenge-Case-Study-4---Data-Bank/blob/main/E.%20Extension%20Request.md)
    
    
  ---
  ## Extra Resources
- - [Medium Article](https://medium.com/@chisompromise/analyzing-subscription-style-digital-data-foodie-fi-f82031f93d09)
- - [Data Bank Dashboard - Visualizing Key Business Metrics and Insights](https://www.novypro.com/project/business-performance-dashboard--foodie-fi)
+ - [Medium Article](https://medium.com/@chisompromise/8-week-sql-challenge-data-bank-abcfe0ea7722)
+ - [Data Bank Dashboard - Visualizing Key Business Metrics and Insights](https://www.novypro.com/project/transaction-data-analysis-and-data-allocation)
    
    
  # <p align="center" style="margin-top: 0px;">For the Love of FinTech 🙌🥰😎💰
