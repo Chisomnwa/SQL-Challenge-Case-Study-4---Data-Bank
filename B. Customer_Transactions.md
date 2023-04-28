@@ -1,4 +1,4 @@
-# <p align="center" style="margin-top: 0px;">💵 Case Study #4 - Data Bank 💵
+# <p align="center" style="margin-top: 0px;">💰 Case Study #4 - Data Bank 💰
 ## <p align="center">  B. Customer Transactions
 
 ### 1. What is the unique count and total amount for each transaction type?
@@ -11,8 +11,8 @@ Steps:
 
 ```sql
 SELECT txn_type,
-	   COUNT(*) AS unique_count,
-	   SUM(txn_amount) AS total_amount
+       COUNT(*) AS unique_count,
+       SUM(txn_amount) AS total_amount
 FROM customer_transactions
 GROUP BY txn_type
 ORDER BY txn_type;
@@ -42,17 +42,17 @@ for all customers using the AVG function.
 WITH deposit_summary AS
 (
 	SELECT customer_id,
-		   txn_type,
-		   COUNT(*) AS deposit_count,
-		   MIN(txn_amount) AS deposit_amount
+	       txn_type,
+	       COUNT(*) AS deposit_count,
+	       MIN(txn_amount) AS deposit_amount
 	FROM customer_transactions
 	GROUP BY customer_id, txn_type
 	
 )
 
 SELECT txn_type,
-	   AVG(deposit_count) AS avg_deposit_count,
-	   AVG(deposit_amount) AS avg_deposit_amount
+       AVG(deposit_count) AS avg_deposit_count,
+       AVG(deposit_amount) AS avg_deposit_amount
 FROM deposit_summary
 WHERE txn_type = 'deposit'
 GROUP BY txn_type;
@@ -63,15 +63,15 @@ GROUP BY txn_type;
 WITH deposit_summary AS
 (
 	SELECT customer_id,
-		   COUNT(CASE WHEN txn_type = 'deposit' THEN 1 END) AS deposit_count,
-		   SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount END) AS deposit_amount
+	       COUNT(CASE WHEN txn_type = 'deposit' THEN 1 END) AS deposit_count,
+	       SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount END) AS deposit_amount
     FROM customer_transactions
 	GROUP BY customer_id
 )
 
 SELECT txn_type,
        AVG(deposit_count) AS avg_depoist_count,
-	   AVG(deposit_amount) AS avg_deposit_amount
+       AVG(deposit_amount) AS avg_deposit_amount
 FROM deposit_summary;
 ```
 
@@ -111,11 +111,11 @@ GROUP BY customer_id, DATEPART(MONTH, txn_date), DATENAME(MONTH, txn_date)
 )
 
 SELECT month_id,	
-	   month_name,
-	   COUNT(DISTINCT customer_id) AS active_customer_count
+       month_name,
+       COUNT(DISTINCT customer_id) AS active_customer_count
 FROM customer_activity
 WHERE deposit_count > 1
-	   AND (purchase_count > 0 OR withdrawal_count > 0)
+	AND (purchase_count > 0 OR withdrawal_count > 0)
 GROUP BY month_id, month_name
 ORDER BY active_customer_count DESC;
 ```
@@ -156,16 +156,16 @@ Steps:
 WITH cte AS
 (
 	SELECT customer_id,
-		   DATEADD(MONTH, DATEDIFF(MONTH, 0, txn_date), 0) AS month_start,
-		   SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -1 * txn_amount END) AS total_amount
+	       DATEADD(MONTH, DATEDIFF(MONTH, 0, txn_date), 0) AS month_start,
+	       SUM(CASE WHEN txn_type = 'deposit' THEN txn_amount ELSE -1 * txn_amount END) AS total_amount
 	FROM customer_transactions
 	GROUP BY customer_id, DATEADD(MONTH, DATEDIFF(MONTH, 0, txn_date), 0)
 )
 
 SELECT cte.customer_id,
-	   DATEPART(MONTH, cte.month_start) AS month,
-	   DATENAME(MONTH, cte.month_start) AS month_name,
-	   SUM(cte.total_amount) OVER(PARTITION BY cte.customer_id ORDER BY cte.month_start) AS closing_balance
+       DATEPART(MONTH, cte.month_start) AS month,
+       DATENAME(MONTH, cte.month_start) AS month_name,
+       SUM(cte.total_amount) OVER(PARTITION BY cte.customer_id ORDER BY cte.month_start) AS closing_balance
 FROM cte;
 ```
 
@@ -212,9 +212,9 @@ is greater than 5 and by dividing that by the total number of distinct customers
 WITH monthly_transactions AS
 (
 	SELECT customer_id,
-		   EOMONTH(txn_date) AS end_date,
-		   SUM(CASE WHEN txn_type IN ('withdrawal', 'purchase') THEN -txn_amount
-					ELSE txn_amount END) AS transactions
+	       EOMONTH(txn_date) AS end_date,
+	       SUM(CASE WHEN txn_type IN ('withdrawal', 'purchase') THEN -txn_amount
+			ELSE txn_amount END) AS transactions
 	FROM customer_transactions
 	GROUP BY customer_id, EOMONTH(txn_date)
 ),
@@ -225,8 +225,8 @@ WITH monthly_transactions AS
 closing_balances AS 
 (
 	SELECT customer_id,
-		   end_date,
-		   COALESCE(SUM(transactions) OVER(PARTITION BY customer_id ORDER BY end_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), 0) AS closing_balance
+	       end_date,
+	       COALESCE(SUM(transactions) OVER(PARTITION BY customer_id ORDER BY end_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), 0) AS closing_balance
 	FROM monthly_transactions
 ),
 ```
@@ -237,10 +237,10 @@ closing_balances AS
 pct_increase AS 
 (
   SELECT customer_id,
-		 end_date,
-		 closing_balance,
-		 LAG(closing_balance) OVER (PARTITION BY customer_id ORDER BY end_date) AS prev_closing_balance,
-		 100 * (closing_balance - LAG(closing_balance) OVER (PARTITION BY customer_id ORDER BY end_date)) / NULLIF(LAG(closing_balance) OVER (PARTITION BY customer_id ORDER BY end_date), 0) AS pct_increase
+         end_date,
+         closing_balance,
+         LAG(closing_balance) OVER (PARTITION BY customer_id ORDER BY end_date) AS prev_closing_balance,
+         100 * (closing_balance - LAG(closing_balance) OVER (PARTITION BY customer_id ORDER BY end_date)) / NULLIF(LAG(closing_balance) OVER (PARTITION BY customer_id ORDER BY end_date), 0) AS pct_increase
  FROM closing_balances
 )
 ```
