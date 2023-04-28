@@ -1,4 +1,4 @@
-# <p align="center" style="margin-top: 0px;">💵 Case Study #4 - Data Bank 💵
+# <p align="center" style="margin-top: 0px;">💵 Case Study #4 - Data Bank 💰
 ## <p align="center">  A. Customer Nodes Exploration
 
 
@@ -81,7 +81,7 @@ Australia had the highest number of customers allocated to that region, followed
 
 ---
 
-### ### 4. How many days on average are customers reallocated to a different region?
+### 4. How many days on average are customers reallocated to a different region?
 
 Steps:
 
